@@ -23,10 +23,10 @@
       margin: 0;
     }
 
-    .welcome-message {
-      flex: 1;
+    .user-section {
       display: flex;
-      justify-content: center;
+      align-items: center;
+      gap: 20px;
       
       .greeting {
         font-size: 1.4rem;
@@ -34,10 +34,6 @@
         font-weight: 600;
         font-family: 'Georgia', serif;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-        padding: 8px 16px;
-        background: linear-gradient(145deg, rgba(212, 175, 55, 0.1), rgba(184, 134, 11, 0.1));
-        border-radius: 15px;
-        border: 1px solid rgba(212, 175, 55, 0.3);
       }
     }
 
@@ -626,11 +622,11 @@
         font-size: 2.2rem;
       }
 
-      .welcome-message .greeting {
+      .user-section .greeting {
         font-size: 1.2rem;
       }
 
-      .cart-icon .cart-container {
+      .user-section .cart-icon .cart-container {
         font-size: 2rem;
       }
     }

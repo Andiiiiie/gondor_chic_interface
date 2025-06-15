@@ -3,13 +3,13 @@
   <!-- En-tête de navigation -->
   <header class="header">
     <h1>GondorChic</h1>
-    <div class="welcome-message" *ngIf="isConnected">
+    <div class="user-section" *ngIf="isConnected">
       <span class="greeting">Bonjour Marie Dupond!!!</span>
-    </div>
-    <div class="cart-icon" *ngIf="isConnected">
-      <div class="cart-container">
-        🛒
-        <span class="cart-notification">3</span>
+      <div class="cart-icon">
+        <div class="cart-container">
+          🛒
+          <span class="cart-notification">3</span>
+        </div>
       </div>
     </div>
   </header>
