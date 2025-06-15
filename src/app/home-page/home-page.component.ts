@@ -23,6 +23,7 @@ export class HomePageComponent implements OnInit{
   username: string = '';
   password: string = '';
   featuredProduct: Product | null = null;
+  isConnected = true;
 
   products: Product[] = [];
 

@@ -3,52 +3,91 @@
   <!-- En-tête de navigation -->
   <header class="header">
     <h1>GondorChic</h1>
-    <!-- <nav class="nav">
-      <a href="#" class="nav-link">Accueil</a>
-      <a href="#" class="nav-link">Produits</a>
-      <a href="#" class="nav-link">A propos</a>
-      <a href="#" class="nav-link">Contact</a>
-    </nav> -->
+    <div class="welcome-message" *ngIf="isConnected">
+      <span class="greeting">Bonjour Marie Dupond!!!</span>
+    </div>
+    <div class="cart-icon" *ngIf="isConnected">
+      <div class="cart-container">
+        🛒
+        <span class="cart-notification">3</span>
+      </div>
+    </div>
   </header>
 
   <!-- Produit du jour -->
   <section class="featured-product" *ngIf="featuredProduct">
-    <h2>Produit du jour</h2>
+    <div class="featured-header">
+      <h2> Produit du jour </h2>
+      <!-- <div class="featured-badge">Sélection du jour</div> -->
+    </div>
     <div class="product-card">
-      <img [src]="featuredProduct.image_url" [alt]="featuredProduct.product_name" class="product-image">
+      <div class="product-image-container">
+        <img [src]="featuredProduct.image_url" [alt]="featuredProduct.product_name" class="product-image">
+        <div class="image-overlay"></div>
+      </div>
       <div class="product-info">
         <h3>{{ featuredProduct.product_name }}</h3>
         <p class="description">{{ featuredProduct.description }}</p>
-        <p class="stock">{{ featuredProduct.stock }} En stock</p>
-        <p class="price">{{ featuredProduct.current_price }} Gondariar</p>
+        <div class="product-details">
+          <p class="stock">📦 {{ featuredProduct.stock }} En stock</p>
+          <p class="price">{{ featuredProduct.current_price }} Gondariar</p>
+        </div>
+        <div class="add-to-cart" *ngIf="isConnected">
+          <div class="quantity-selector">
+            <label for="quantity-featured">Quantité :</label>
+          </div>
+          <div class="cart-controls">
+            <input type="number" id="quantity-featured" min="1" [max]="featuredProduct.stock" value="1" class="quantity-input">
+            <button class="cart-btn">
+              <span>🛒 Ajouter au panier</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Section de connexion -->
-  <section class="login-section">
-    <h3>Identifiez-vous pour passer commande !!</h3>
-    <form class="login-form" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="username">Pseudo</label>
-        <input type="text" id="username" [(ngModel)]="username" name="username" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Mot de passe</label>
-        <input type="password" id="password" [(ngModel)]="password" name="password" required>
-      </div>
-      <button type="submit" class="login-btn">S'identifier</button>
-    </form>
+  <section class="login-section" *ngIf="!isConnected">
+    <div class="login-container">
+      <div class="login-icon">🗝️</div>
+      <h3>Identifiez-vous pour passer commande !!</h3>
+      <form class="login-form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="username">Pseudo</label>
+          <input type="text" id="username" [(ngModel)]="username" name="username" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" [(ngModel)]="password" name="password" required>
+        </div>
+        <button type="submit" class="login-btn">
+          <span>S'identifier</span>
+          <span class="btn-icon">⚔️</span>
+        </button>
+      </form>
+    </div>
   </section>
 
   <!-- Liste des produits -->
   <section class="product-list">
-    <h3>Nos produits</h3>
+    <h3>🏺 Nos produits 🏺</h3>
     <div class="products">
       <div class="product-item" *ngFor="let product of products">
+        <!-- <div class="product-badge">Disponible</div> -->
         <img [src]="product.image_url" [alt]="product.product_name" class="product-thumbnail">
         <h4>{{ product.product_name }}</h4>
         <p class="price">{{ product.current_price }} Gondariar</p>
+        <div class="product-actions" *ngIf="isConnected">
+          <div class="quantity-selector">
+          </div>
+          <div class="cart-controls">
+            <input type="number" min="1" max="10" value="1" class="quantity-input-small">
+            <button class="cart-btn-small">
+              🛒 Ajouter
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
