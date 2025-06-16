@@ -37,7 +37,8 @@
             <label for="quantity-featured">Quantité :</label>
           </div>
           <div class="cart-controls">
-            <input type="number" id="quantity-featured" min="1" [max]="featuredProduct.stock" value="1" class="quantity-input">
+            <input type="number" id="quantity-featured" min="1" [max]="featuredProduct.stock" value="1"
+              class="quantity-input">
             <button class="cart-btn">
               <span>🛒 Ajouter au panier</span>
             </button>
@@ -56,10 +57,16 @@
         <div class="form-group">
           <label for="username">Pseudo</label>
           <input type="text" id="pseudo" formControlName="pseudo" required>
+          <div class="error-message" *ngIf="loginForm.get('pseudo')?.touched && loginForm.get('pseudo')?.invalid">
+            Le pseudo est requis.
+          </div>
         </div>
         <div class="form-group">
           <label for="password">Mot de passe</label>
           <input type="password" id="password" name="password" formControlName="password" required>
+          <div class="error-message" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+            Le mot de passe est requis.
+          </div>
         </div>
         <button type="submit" class="login-btn" [disabled]="loginForm.invalid">
           <span>S'identifier</span>

@@ -5,6 +5,7 @@ import { ProductService } from '../../services/product.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth-service.service';
+import Swal from 'sweetalert2'; // Importer SweetAlert2
 
 interface Product {
   id: number;
@@ -50,7 +51,7 @@ export class HomePageComponent implements OnInit {
       }
     })
     this.productService.getDailyProduct().subscribe({
-      next: (data) =>{
+      next: (data) => {
         this.featuredProduct = data.data
       }
     })
@@ -80,7 +81,14 @@ export class HomePageComponent implements OnInit {
           }
         },
         error: (err) => {
-          this.errorMessage = err.error.message || 'Erreur de connexion';
+          this.errorMessage = err.error.message || 'Pseudo ou mot de passe incorrect';
+          Swal.fire({
+            icon: 'error',
+            title: 'Erreur de connexion',
+            text: err.error.message,
+            confirmButtonText: 'Réessayer',
+          });
+          this.loginForm.reset(); // Réinitialiser le formulaire
         },
       });
     }
