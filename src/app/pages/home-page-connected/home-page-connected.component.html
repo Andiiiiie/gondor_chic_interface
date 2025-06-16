@@ -1,0 +1,80 @@
+<!-- <div class="dashboard-container">
+  <h2>Bienvenue, {{ user?.pseudo }} !</h2>
+  <p>Nom : {{ user?.first_name }} {{ user?.last_name }}</p>
+  <button (click)="logout()">Déconnexion</button>
+</div> -->
+
+<meta charset="UTF-8">
+<div class="gondor-chic-home">
+  <!-- En-tête de navigation -->
+  <header class="header">
+    <h1>GondorChic</h1>
+    <div class="user-section">
+      <span class="greeting">Bonjour {{ user?.first_name }} {{ user?.last_name }}!!!</span>
+      <div class="cart-icon">
+        <div class="cart-container">
+          🛒
+          <span class="cart-notification">3</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Produit du jour -->
+  <section class="featured-product" *ngIf="featuredProduct">
+    <div class="featured-header">
+      <h2> Produit du jour </h2>
+      <div class="featured-badge">Sélection du jour</div>
+    </div>
+    <div class="product-card">
+      <div class="product-image-container">
+        <img [src]="featuredProduct.image_url" [alt]="featuredProduct.product_name" class="product-image">
+        <div class="image-overlay"></div>
+      </div>
+      <div class="product-info">
+        <h3>{{ featuredProduct.product_name }}</h3>
+        <p class="description">{{ featuredProduct.description }}</p>
+        <div class="product-details">
+          <p class="stock">📦 {{ featuredProduct.stock }} En stock</p>
+          <p class="price">{{ featuredProduct.current_price }} Gondariar</p>
+        </div>
+        <div class="add-to-cart">
+          <div class="quantity-selector">
+            <label for="quantity-featured">Quantité :</label>
+          </div>
+          <div class="cart-controls">
+            <input type="number" id="quantity-featured" min="1" [max]="featuredProduct.stock" value="1" class="quantity-input">
+            <button class="cart-btn">
+              <span>🛒 Ajouter au panier</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section de connexion -->
+  
+  <!-- Liste des produits -->
+  <section class="product-list">
+    <h3>🏺 Nos produits 🏺</h3>
+    <div class="products">
+      <div class="product-item" *ngFor="let product of products">
+        <!-- <div class="product-badge">Disponible</div> -->
+        <img [src]="product.image_url" [alt]="product.product_name" class="product-thumbnail">
+        <h4>{{ product.product_name }}</h4>
+        <p class="price">{{ product.current_price }} Gondariar</p>
+        <div class="product-actions">
+          <div class="quantity-selector">
+          </div>
+          <div class="cart-controls">
+            <input type="number" min="1" max="10" value="1" class="quantity-input-small">
+            <button class="cart-btn-small">
+              🛒 Ajouter
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

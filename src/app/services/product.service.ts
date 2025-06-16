@@ -13,4 +13,8 @@ export class ProductService {
   getProducts(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
+
+  getDailyProduct(): Observable<any>{
+    return this.http.get(`${this.apiUrl}/produit-du-jour`)
+  }
 }
