@@ -39,7 +39,12 @@ export class AuthService {
   }
 
   getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
+    // Check if we are in a browser environment
+    // and localStorage is available
+    if (typeof window !== 'undefined' && localStorage) {
+      return localStorage.getItem(this.tokenKey);
+    }
+    return null;
   }
 
   isAuthenticated(): boolean {
